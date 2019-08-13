@@ -36,13 +36,15 @@ $(document).ready(function () {
     url: 'https://localhost:44370/api/movie',
     dataType: 'json',
     success: function(data) {
-      console.log('data', data);
-        // $.each(Movie) {
-        //   .$('#movieTable #tbody');
-        //   movieTable.append('<tr><td>'
-        //   + Movie.Title + '</td><td>' + Movie.DirectorName + '</td><td>' + Movies.Genre
-        //   + '</td><td>'</tr>');
-        //   }
+      var movie_data = '';
+        $.each(data, function(key,value){
+          movie_data += '<tr>';
+          movie_data += '<td>' + value.Title + '</td>';
+          movie_data += '<td>' + value.DirectorName + '</td>';
+          movie_data+= '<td>' + value.Genre + '</td>';
+          movie_data += '</tr>';
+        });
+        $('#movieTable').append(movie_data);
       }
     });
- })
+});
