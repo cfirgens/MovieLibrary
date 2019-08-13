@@ -6,7 +6,7 @@
         };
 
         $.ajax({
-            url: 'https://localhost:44352/api/movie',
+            url: 'https://localhost:44370/api/movie',
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
@@ -24,3 +24,24 @@
 
     $('#my-form').submit( processForm );
 })(jQuery);
+
+
+
+
+//Get and display into table
+$(document).ready(function () {
+  $.ajax({
+    url: 'https://localhost:44370/api/movie',
+    dataType: "json",
+    type: 'get',
+    success: function(data) {
+      console.log('data', data);
+        // $.each(Movie) {
+        //   .$('#movieTable #tbody');
+        //   movieTable.append('<tr><td>'
+        //   + Movie.Title + '</td><td>' + Movie.DirectorName + '</td><td>' + Movies.Genre
+        //   + '</td><td>'</tr>');
+        //   }
+      }
+    });
+  })
