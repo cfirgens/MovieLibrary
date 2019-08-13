@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201908131618276_AddedGenreToMovieDBChangedDirectorToDirectorName.Designer.cs">
       <DependentUpon>201908131618276_AddedGenreToMovieDBChangedDirectorToDirectorName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908131807355_InitialMigration.cs" />
+    <Compile Include="Migrations\201908131807355_InitialMigration.Designer.cs">
+      <DependentUpon>201908131807355_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -324,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908131618276_AddedGenreToMovieDBChangedDirectorToDirectorName.resx">
       <DependentUpon>201908131618276_AddedGenreToMovieDBChangedDirectorToDirectorName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908131807355_InitialMigration.resx">
+      <DependentUpon>201908131807355_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
