@@ -10,18 +10,29 @@ namespace MovieLibrary.Controllers
 {
     public class MovieController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public IHttpActionResult Get()
         {
             // Retrieve all movies from db logic
-            return new string[] { "movie1 string", "movie2 string" };
+            IList<Movie> movies = db.Movies.ToList();
+            if (movies.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(movies);
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            // Retrieve movie by id from db logic
-            return "value";
+            //retrieve movie by id from db logic
+            Movie movie = db.Movies.Where(m => m.MovieId == id).FirstOrDefault();
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return Ok(movie);
         }
 
         // POST api/values
