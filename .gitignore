@@ -141,6 +141,8 @@ _NCrunch_*
 .*crunch*.local.xml
 nCrunchTemp_*
 
+web.config
+
 # MightyMoose
 *.mm.*
 AutoTest.Net/
