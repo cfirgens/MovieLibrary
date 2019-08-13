@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace MovieLibrary.Controllers
 {
@@ -38,22 +39,31 @@ namespace MovieLibrary.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]Movie value)
+        [ResponseType(typeof(Movie))]
+        public IHttpActionResult Post([FromBody]Movie movie)
         {
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            db.Movies.Add(movie);
+            db.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = movie.MovieId }, movie);
             // Create movie in db logic
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody]string value)
         {
             // Update movie in db logic
+            throw new NotImplementedException();
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             // Delete movie from db logic
+            throw new NotImplementedException();
         }
     }
 }
