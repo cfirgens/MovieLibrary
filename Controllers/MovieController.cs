@@ -17,10 +17,12 @@ namespace MovieLibrary.Controllers
         {
             // Retrieve all movies from db logic
             IList<Movie> movies = db.Movies.ToList();
+
             if (movies.Count == 0)
             {
                 return NotFound();
             }
+
             return Ok(movies);
         }
 
@@ -49,6 +51,7 @@ namespace MovieLibrary.Controllers
             db.Movies.Add(movie);
             db.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = movie.MovieId }, movie);
+
             // Create movie in db logic
         }
 
