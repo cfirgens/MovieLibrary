@@ -63,6 +63,21 @@ function CreateMovie(){
   })
 }
 
-function EditMovie(id){
-  console.log(".");
-}
+//Edit
+let dropdown = $('#edit');
+
+dropdown.empty();
+
+dropdown.append('<option selected="true" disabled>Choose Movie To Edit</option>');
+dropdown.prop('selectedIndex', 0);
+
+const url = 'https://localhost:44370/api/movie';
+
+// Populate dropdown with list of movies
+$.getJSON(url, function (data) {
+  $.each(data, function (key, entry) {
+    dropdown.append($('<option></option>').text(entry.Title));
+  })
+});
+
+GetAllMovies();
