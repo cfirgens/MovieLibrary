@@ -18,10 +18,12 @@ namespace MovieLibrary.Controllers
         {
             // Retrieve all movies from db logic
             IList<Movie> movies = db.Movies.ToList();
+
             if (movies.Count == 0)
             {
                 return NotFound();
             }
+
             return Ok(movies);
         }
 
