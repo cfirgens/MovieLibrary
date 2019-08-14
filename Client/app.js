@@ -7,6 +7,7 @@ function GetAllMovies(){
       url: 'https://localhost:44370/api/movie',
       dataType: 'json',
       success: function(data) {
+        $('tbody').empty();
         var movie_data = '';
           $.each(data, function(key,value){
             movie_data += '<tr>';
@@ -48,7 +49,7 @@ function CreateMovie(){
         });
       $('#movieTable').append(movie_data);
       GetAllMovies();
-    }    
+    }
   })
 }
 
