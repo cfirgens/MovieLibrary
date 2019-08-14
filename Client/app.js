@@ -53,6 +53,18 @@ function CreateMovie(){
   })
 }
 
+$(function(){
+  $(document).on("dblclick","#movieTable tr", function(){
+    alert('Row dblclicked');
+  })
+})
+//
+// var $result = $('#movieTable');
+// $('#movieTable').dblclick(function(){
+//    var string = this.value;
+//    console.log(string);
+// });
+
 //Edit
 let dropdown = $('#edit');
 
@@ -69,5 +81,10 @@ $.getJSON(url, function (data) {
     dropdown.append($('<option></option>').text(entry.Title));
   })
 });
+
+
+
+
+
 
 GetAllMovies();
