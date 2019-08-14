@@ -1,6 +1,7 @@
 ﻿using MovieLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -48,22 +49,84 @@ namespace MovieLibrary.Controllers
             }
             db.Movies.Add(movie);
             db.SaveChanges();
-            return CreatedAtRoute("DefaultApi", new { id = movie.MovieId }, movie);
+            //return CreatedAtRoute("DefaultApi", new { id = movie.MovieId }, movie);
+            return Ok();
             // Create movie in db logic
         }
 
         // PUT api/values/5
-        public IHttpActionResult Put(int id, [FromBody]string value)
+        [ResponseType(typeof(void))]
+        public IHttpActionResult Put(int id, Movie movie)
         {
             // Update movie in db logic
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (id != movie.MovieId)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(movie).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MovieExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE api/values/5
+        [ResponseType(typeof(Movie))]
         public IHttpActionResult Delete(int id)
         {
             // Delete movie from db logic
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return NotFound();
+
+            }
+            db.Movies.Remove(movie);
+            db.SaveChanges();
+            return Ok(movie);
+
         }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+
+
+        private bool MovieExists(int id)
+        {
+            return db.Movies.Count(e => e.MovieId == id) > 0;
+        }
+
     }
 }
