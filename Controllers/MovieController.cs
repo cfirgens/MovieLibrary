@@ -64,8 +64,11 @@ namespace MovieLibrary.Controllers
             {
                 return BadRequest();
             }
+            Movie movieEdit = db.Movies.Where(m => m.MovieId == id).FirstOrDefault();
 
-            db.Entry(movie).State = System.Data.Entity.EntityState.Modified;
+            movieEdit.Title = movie.Title;
+            movieEdit.DirectorName = movie.Title;
+            movieEdit.Genre = movie.Genre;            
 
             try
             {
@@ -82,7 +85,7 @@ namespace MovieLibrary.Controllers
                     throw;
                 }
             }
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
 
         // DELETE api/values/5
