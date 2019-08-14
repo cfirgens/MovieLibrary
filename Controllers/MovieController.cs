@@ -41,18 +41,10 @@ namespace MovieLibrary.Controllers
         }
 
         // POST api/values
-        [ResponseType(typeof(Movie))]
-        public IHttpActionResult Post([FromBody]Movie movie)
+        public void Post([FromBody] Movie movie)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             db.Movies.Add(movie);
             db.SaveChanges();
-            return CreatedAtRoute("DefaultApi", new { id = movie.MovieId }, movie);
-
-            // Create movie in db logic
         }
 
         // PUT api/values/5

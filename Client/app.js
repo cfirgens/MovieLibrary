@@ -27,6 +27,7 @@ function GetMovieObject(){
     "DirectorName": document.getElementById('directorInput').value,
     "Genre": document.getElementById('genreInput').value
   };
+  return data;
 }
 
 function CreateMovie(){
@@ -35,6 +36,7 @@ function CreateMovie(){
     type:'POST',
     url: 'https://localhost:44370/api/movie',
     dataType: 'json',
+    data: data,
     success: function(data){
       var movie_data = '';
         $.each(data, function(key,value){
@@ -45,6 +47,7 @@ function CreateMovie(){
           movie_data += '</tr>';
         });
       $('#movieTable').append(movie_data);
+      GetAllMovies();
     }    
   })
 }
