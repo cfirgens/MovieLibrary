@@ -92,4 +92,26 @@ function EditMovie(){
 }
 
 
+
+function EditMovie(){
+  console.log("edit");
+
+}
+
+
+
+
+$(document).ready(function(){
+  $("td").click(function(){
+    console.log("click");
+    alert($("tr").val());
+  });
+});
+
+
+
+
+
+
+
 GetAllMovies();
