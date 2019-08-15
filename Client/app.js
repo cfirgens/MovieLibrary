@@ -83,41 +83,18 @@ function EditMovie(){
     dataType: 'json',
     success: function(selectedMovie){
       var newMovie = '';
-<<<<<<< HEAD
-      $("#titleInput").val(data.Title);
-      $("#directorInput").val(data.DirectorName);
-      $("#genreInput").val(data.Genre);
-     GetAllMovies();
-=======
+
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
 
       GetAllMovies();
->>>>>>> 4fec22f9f08e042ca7fcb8052b8d80b295e580e2
+
     }
 
   })
 }
 
-
-
-<<<<<<< HEAD
-
-
-$(document).ready(function(){
-  $("td").click(function(){
-    console.log("click");
-    alert($("tr").val());
-  });
-});
-
-
-
-
-
-=======
->>>>>>> 4fec22f9f08e042ca7fcb8052b8d80b295e580e2
 
 
 GetAllMovies();
