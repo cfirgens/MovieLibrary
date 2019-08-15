@@ -34,9 +34,9 @@ function GetSpecificMovie(movieId){
       $("#titleInput").val(data.Title);
       $("#directorInput").val(data.DirectorName);
       $("#genreInput").val(data.Genre);
-      //("MovieId").val(data.movieId);
-
+      $("#idInput").val(data.MovieId);
       document.documentElement.scrollTop = 0;
+      return data;
     }
   })
 }
@@ -48,7 +48,7 @@ function GetMovieObject(){
     "Title": document.getElementById('titleInput').value,
     "DirectorName": document.getElementById('directorInput').value,
     "Genre": document.getElementById('genreInput').value,
-    "MovieId": document.GetElementById('')
+    "MovieId": document.getElementById('idInput').value
   };
   return data;
 }
@@ -92,6 +92,11 @@ function EditMovie(){
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
+
+      selectedMovie.MovieId = $("#idInput").val();
+    }
+  })
+
       GetAllMovies();
     }
   })
@@ -107,6 +112,7 @@ function DeleteMovie(movieId){
       console.log("Delete Success");
     }
   })
+
   .then(function(data){
     GetAllMovies();
   })
