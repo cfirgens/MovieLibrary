@@ -1,5 +1,5 @@
 
-//Get and display into table
+//Get and display into table\\
 function GetAllMovies(){
   $(document).ready(function () {
     $.ajax({
@@ -14,7 +14,7 @@ function GetAllMovies(){
             movie_data += '<td>' + value.Title + '</td>';
             movie_data += '<td>' + value.DirectorName + '</td>';
             movie_data += '<td>' + value.Genre  + '</td>'
-            movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
+            movie_data += '<td><button class="edit" id = 'value.movieID' onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
             movie_data += '</tr>';
           });
           $('#movieTable').append(movie_data);
@@ -23,6 +23,7 @@ function GetAllMovies(){
   });
 }
 
+// Get specific Movie \\
 function GetSpecificMovie(movieId){
   console.log("hello");
   $.ajax({
@@ -33,24 +34,26 @@ function GetSpecificMovie(movieId){
       $("#titleInput").val(data.Title);
       $("#directorInput").val(data.DirectorName);
       $("#genreInput").val(data.Genre);
-      $(movieId).val(data.movieId);
+      //("MovieId").val(data.movieId);
+
       document.documentElement.scrollTop = 0;
     }
   })
 }
 
 
-//Get movie info
+//Get movie info \\
 function GetMovieObject(){
   var data = {
     "Title": document.getElementById('titleInput').value,
     "DirectorName": document.getElementById('directorInput').value,
     "Genre": document.getElementById('genreInput').value,
+    "MovieId": document.GetElementById('')
   };
   return data;
 }
 
-//Create Movie Input
+//Create Movie Input \\
 function CreateMovie(){
   var data = GetMovieObject();
   $.ajax({
@@ -75,7 +78,7 @@ function CreateMovie(){
   })
 }
 
-// Edit
+// Edit \\
 function EditMovie(){
   var selectedMovie = GetMovieObject();
   $.ajax({
@@ -85,15 +88,11 @@ function EditMovie(){
     data: selectedMovie,
     success: function(selectedMovie){
       var newMovie = '';
-
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
-
       GetAllMovies();
-
     }
-
   })
 }
 
