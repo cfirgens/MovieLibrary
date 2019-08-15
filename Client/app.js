@@ -14,7 +14,8 @@ function GetAllMovies(){
             movie_data += '<td>' + value.Title + '</td>';
             movie_data += '<td>' + value.DirectorName + '</td>';
             movie_data += '<td>' + value.Genre  + '</td>'
-            movie_data += '<td><button class="edit" id = 'value.movieID' onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
+            movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button>';
+            movie_data += '<button class="delete" onclick = "DeleteMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Delete</button></td>';
             movie_data += '</tr>';
           });
           $('#movieTable').append(movie_data);
@@ -25,7 +26,6 @@ function GetAllMovies(){
 
 // Get specific Movie \\
 function GetSpecificMovie(movieId){
-  console.log("hello");
   $.ajax({
     type:'GET',
     url: 'https://localhost:44370/api/movie/'+movieId,
@@ -68,7 +68,8 @@ function CreateMovie(){
           movie_data += '<td>' + value.Title + '</td>';
           movie_data += '<td>' + value.DirectorName + '</td>';
           movie_data += '<td>' + value.Genre  + '</td>';
-          movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
+          movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button>';
+          movie_data += '<button class="delete" onclick = "DeleteMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Delete</button></td>';
           movie_data += '</tr>';
 
         });
@@ -93,6 +94,21 @@ function EditMovie(){
       selectedMovie.Genre = $("#genreInput").val();
       GetAllMovies();
     }
+  })
+}
+
+// Delete \\
+function DeleteMovie(movieId){
+  $.ajax({
+    type:'DELETE',
+    url: 'https://localhost:44370/api/movie/'+movieId,
+    dataType:'json',
+    success: function(data){
+      console.log("Delete Success");
+    }
+  })
+  .then(function(data){
+    GetAllMovies();
   })
 }
 
