@@ -85,7 +85,6 @@ function EditMovie(){
   $.ajax({
     type: 'PUT',
     url: 'https://localhost:44370/api/movie',
-    dataType: 'json',
     data: selectedMovie,
     success: function(selectedMovie){
       var newMovie = '';
@@ -93,8 +92,10 @@ function EditMovie(){
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
       selectedMovie.MovieId = $("#idInput").val();
+      console.log("edit success!");
     }
   }).then(function(data){
+    console.log('edit');
     GetAllMovies();
   })
 }
