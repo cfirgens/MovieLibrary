@@ -87,16 +87,12 @@ function EditMovie(){
       $("#titleInput").val(data.Title);
       $("#directorInput").val(data.DirectorName);
       $("#genreInput").val(data.Genre);
+     GetAllMovies();
     }
+
   })
 }
 
-
-
-function EditMovie(){
-  console.log("edit");
-
-}
 
 
 
