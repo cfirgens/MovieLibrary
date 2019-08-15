@@ -74,8 +74,9 @@ function CreateMovie(){
 
         });
       $('#movieTable').append(movie_data);
-      GetAllMovies();
     }
+  }).then(function(data){
+     GetAllMovies();
   })
 }
 
@@ -92,11 +93,9 @@ function EditMovie(){
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
       selectedMovie.MovieId = $("#idInput").val();
-      console.log("edit success!");
     }
   }).then(function(data){
-    console.log('edit');
-    GetAllMovies();
+     GetAllMovies();
   })
 }
 
