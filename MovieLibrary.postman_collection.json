@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "163842e9-bfd9-4d96-9ded-2c905bf5a7ae",
+		"name": "MovieLibrary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Movie",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ad353ff7-d2d7-4cfb-ae90-7b0bd343a800",
+						"exec": [
+							"[\r",
+							"\r",
+							"]"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n     \"Title\":\"The Post\",\r\n    \"DirectorName\": \"Chris Firgens\",\r\n    \"Genre\": \"Suspense\"\r\n    }"
+				},
+				"url": {
+					"raw": "https://localhost:44370/api/movie",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44370",
+					"path": [
+						"api",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movie",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ad353ff7-d2d7-4cfb-ae90-7b0bd343a800",
+						"exec": [
+							"[\r",
+							"\r",
+							"]"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44370/api/movie",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44370",
+					"path": [
+						"api",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Movie",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ad353ff7-d2d7-4cfb-ae90-7b0bd343a800",
+						"exec": [
+							"[\r",
+							"\r",
+							"]"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n     \"Title\":\"The Post\",\r\n    \"DirectorName\": \"Chris Firgens\",\r\n    \"Genre\": \"Suspense\"\r\n    }"
+				},
+				"url": {
+					"raw": "https://localhost:44370/api/movie/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44370",
+					"path": [
+						"api",
+						"movie",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete movie ",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ad353ff7-d2d7-4cfb-ae90-7b0bd343a800",
+						"exec": [
+							"[\r",
+							"\r",
+							"]"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n     \"Title\":\"The Post\",\r\n    \"DirectorName\": \"Chris Firgens\",\r\n    \"Genre\": \"Suspense\"\r\n    }"
+				},
+				"url": {
+					"raw": "https://localhost:44370/api/movie/7",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44370",
+					"path": [
+						"api",
+						"movie",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Movie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"MovieId\": 2,\r\n        \"Title\": \"The Dark Knight\",\r\n        \"DirectorName\": \"Christopher Nolan\",\r\n        \"Genre\": \"Action\"\r\n    }"
+				},
+				"url": {
+					"raw": "https://localhost:44370/api/movie",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44370",
+					"path": [
+						"api",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
