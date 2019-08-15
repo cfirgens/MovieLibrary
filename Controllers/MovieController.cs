@@ -58,7 +58,7 @@ namespace MovieLibrary.Controllers
             Movie movieEdit = db.Movies.Where(m => m.MovieId == movie.MovieId).FirstOrDefault();
 
             movieEdit.Title = movie.Title;
-            movieEdit.DirectorName = movie.Title;
+            movieEdit.DirectorName = movie.DirectorName;
             movieEdit.Genre = movie.Genre;            
 
             db.SaveChanges();

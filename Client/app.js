@@ -33,7 +33,9 @@ function GetSpecificMovie(movieId){
       $("#titleInput").val(data.Title);
       $("#directorInput").val(data.DirectorName);
       $("#genreInput").val(data.Genre);
+      $("#idInput").val(data.MovieId);
       document.documentElement.scrollTop = 0;
+      return data;
     }
   })
 }
@@ -44,7 +46,8 @@ function GetMovieObject(){
   var data = {
     "Title": document.getElementById('titleInput').value,
     "DirectorName": document.getElementById('directorInput').value,
-    "Genre": document.getElementById('genreInput').value
+    "Genre": document.getElementById('genreInput').value,
+    "MovieId": document.getElementById('idInput').value
   };
   return data;
 }
@@ -81,17 +84,17 @@ function EditMovie(){
     type: 'PUT',
     url: 'https://localhost:44370/api/movie',
     dataType: 'json',
+    data: selectedMovie,
     success: function(selectedMovie){
       var newMovie = '';
-
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
-
-      GetAllMovies();
-
+      selectedMovie.MovieId = $("#idInput").val();
     }
-
+  })
+  .then(function(data){
+    GetAllMovies();
   })
 }
 
