@@ -1,5 +1,5 @@
 
-//Get and display into table
+//Get and display into table\\
 function GetAllMovies(){
   $(document).ready(function () {
     $.ajax({
@@ -14,7 +14,8 @@ function GetAllMovies(){
             movie_data += '<td>' + value.Title + '</td>';
             movie_data += '<td>' + value.DirectorName + '</td>';
             movie_data += '<td>' + value.Genre  + '</td>'
-            movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
+            movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button>';
+            movie_data += '<button class="delete" onclick = "DeleteMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Delete</button></td>';
             movie_data += '</tr>';
           });
           $('#movieTable').append(movie_data);
@@ -23,8 +24,8 @@ function GetAllMovies(){
   });
 }
 
+// Get specific Movie \\
 function GetSpecificMovie(movieId){
-  console.log("hello");
   $.ajax({
     type:'GET',
     url: 'https://localhost:44370/api/movie/'+movieId,
@@ -41,7 +42,7 @@ function GetSpecificMovie(movieId){
 }
 
 
-//Get movie info
+//Get movie info \\
 function GetMovieObject(){
   var data = {
     "Title": document.getElementById('titleInput').value,
@@ -52,7 +53,7 @@ function GetMovieObject(){
   return data;
 }
 
-//Create Movie Input
+//Create Movie Input \\
 function CreateMovie(){
   var data = GetMovieObject();
   $.ajax({
@@ -67,7 +68,8 @@ function CreateMovie(){
           movie_data += '<td>' + value.Title + '</td>';
           movie_data += '<td>' + value.DirectorName + '</td>';
           movie_data += '<td>' + value.Genre  + '</td>';
-          movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
+          movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button>';
+          movie_data += '<button class="delete" onclick = "DeleteMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Delete</button></td>';
           movie_data += '</tr>';
 
         });
@@ -77,7 +79,7 @@ function CreateMovie(){
   })
 }
 
-// Edit
+// Edit \\
 function EditMovie(){
   var selectedMovie = GetMovieObject();
   $.ajax({
@@ -90,9 +92,27 @@ function EditMovie(){
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
+
       selectedMovie.MovieId = $("#idInput").val();
     }
   })
+
+      GetAllMovies();
+    }
+  })
+}
+
+// Delete \\
+function DeleteMovie(movieId){
+  $.ajax({
+    type:'DELETE',
+    url: 'https://localhost:44370/api/movie/'+movieId,
+    dataType:'json',
+    success: function(data){
+      console.log("Delete Success");
+    }
+  })
+
   .then(function(data){
     GetAllMovies();
   })
