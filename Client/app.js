@@ -33,6 +33,7 @@ function GetSpecificMovie(movieId){
       $("#titleInput").val(data.Title);
       $("#directorInput").val(data.DirectorName);
       $("#genreInput").val(data.Genre);
+      $(movieId).val(data.movieId);
       document.documentElement.scrollTop = 0;
     }
   })
@@ -44,7 +45,7 @@ function GetMovieObject(){
   var data = {
     "Title": document.getElementById('titleInput').value,
     "DirectorName": document.getElementById('directorInput').value,
-    "Genre": document.getElementById('genreInput').value
+    "Genre": document.getElementById('genreInput').value,
   };
   return data;
 }
@@ -81,43 +82,20 @@ function EditMovie(){
     type: 'PUT',
     url: 'https://localhost:44370/api/movie',
     dataType: 'json',
+    data: selectedMovie,
     success: function(selectedMovie){
       var newMovie = '';
-<<<<<<< HEAD
-      $("#titleInput").val(data.Title);
-      $("#directorInput").val(data.DirectorName);
-      $("#genreInput").val(data.Genre);
-     GetAllMovies();
-=======
+
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
 
       GetAllMovies();
->>>>>>> 4fec22f9f08e042ca7fcb8052b8d80b295e580e2
+
     }
 
   })
 }
-
-
-
-<<<<<<< HEAD
-
-
-$(document).ready(function(){
-  $("td").click(function(){
-    console.log("click");
-    alert($("tr").val());
-  });
-});
-
-
-
-
-
-=======
->>>>>>> 4fec22f9f08e042ca7fcb8052b8d80b295e580e2
 
 
 GetAllMovies();
