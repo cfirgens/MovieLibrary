@@ -93,14 +93,13 @@ function EditMovie(){
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
       selectedMovie.MovieId = $("#idInput").val();
-      GetAllMovies();
     }
-  })
-
-
-    }
+  }).then(function(data){
+    GetAllMovies();
   })
 }
+
+
 
 // Delete \\
 function DeleteMovie(movieId){
@@ -109,9 +108,12 @@ function DeleteMovie(movieId){
     url: 'https://localhost:44370/api/movie/'+movieId,
     dataType:'json',
     success: function(data){
-      console.log("Delete Success");
     }
   })
+  .then(function(data){
+    GetAllMovies();
+  })
+}
 
 
 GetAllMovies();
