@@ -13,12 +13,16 @@ function GetAllMovies(){
             movie_data += '<tr>';
             movie_data += '<td>' + value.Title + '</td>';
             movie_data += '<td>' + value.DirectorName + '</td>';
-            movie_data += '<td>' + value.Genre  +
-      "<button type='button' " +
-              "onclick='EditMovie(this)' " +
-              "class='btn btn-default'>" +
-              "<span class='glyphicon glyphicon-edit' />" + "Edit" +
-      "</button>" + '</td>';
+            movie_data += '<td>' + value.Genre  + '</td>';
+            movie_data += '<td>'
+            + "<button type='button' "
+            + "id='runEdit'"
+            + "onclick='EditMovie(this)' "
+            + "class='btn btn-default'>"
+            + "<span class='glyphicon glyphicon-edit' />"
+            + "Edit"
+            + "</button>"
+            + '</td>';
             movie_data += '</tr>';
           });
           $('#movieTable').append(movie_data);
@@ -49,12 +53,7 @@ function CreateMovie(){
           movie_data += '<tr>';
           movie_data += '<td>' + value.Title + '</td>';
           movie_data += '<td>' + value.DirectorName + '</td>';
-          movie_data += '<td>' + value.Genre  +
-      "<button type='button' " +
-              "onclick='EditMovie(this)' " +
-              "class='btn btn-default'>" +
-              "<span class='glyphicon glyphicon-edit' />" + "Edit" +
-      "</button>" + '</td>';
+          movie_data += '<td>' + value.Genre  + '</td>';
           movie_data += '</tr>';
         });
       $('#movieTable').append(movie_data);
@@ -79,5 +78,27 @@ $.getJSON(url, function (data) {
     dropdown.append($('<option></option>').text(entry.Title));
   })
 });
+
+
+function EditMovie(){
+  console.log("edit");
+
+}
+
+
+
+
+$(document).ready(function(){
+  $("td").click(function(){
+    console.log("click");
+    alert($("tr").val());
+  });
+});
+
+
+
+
+
+
 
 GetAllMovies();
