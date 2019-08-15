@@ -24,14 +24,16 @@ function GetAllMovies(){
 }
 
 function GetSpecificMovie(movieId){
+  console.log("hello");
   $.ajax({
     type:'GET',
-    url: 'https://localhost:44370/api/movie/movieID',
+    url: 'https://localhost:44370/api/movie/'+movieId,
     dataType:'json',
-    success: function(){
-
+    success: function(data){
+      $("#titleInput").val(data.Title);
+      $("#directorInput").val(data.DirectorName);
+      $("#genreInput").val(data.Genre);
     }
-
   })
 }
 
