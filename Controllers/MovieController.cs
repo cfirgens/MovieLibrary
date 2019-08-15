@@ -50,41 +50,19 @@ namespace MovieLibrary.Controllers
         }
 
         // PUT api/values/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult Put(int id, Movie movie)
+        //[ResponseType(typeof(void))]
+        public IHttpActionResult Put([FromBody] Movie movie)
         {
             // Update movie in db logic
             //throw new NotImplementedException();
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if (id != movie.MovieId)
-            {
-                return BadRequest();
-            }
-            Movie movieEdit = db.Movies.Where(m => m.MovieId == id).FirstOrDefault();
+            Movie movieEdit = db.Movies.Where(m => m.MovieId == movie.MovieId).FirstOrDefault();
 
             movieEdit.Title = movie.Title;
             movieEdit.DirectorName = movie.Title;
             movieEdit.Genre = movie.Genre;            
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MovieExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
+
             return Ok();
         }
 

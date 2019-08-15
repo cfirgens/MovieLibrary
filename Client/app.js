@@ -76,39 +76,21 @@ function CreateMovie(){
 
 // Edit
 function EditMovie(){
-  var data = GetMovieObject();
+  var selectedMovie = GetMovieObject();
   $.ajax({
     type: 'PUT',
     url: 'https://localhost:44370/api/movie',
     dataType: 'json',
-    data: data,
-    success: function(data){
+    success: function(selectedMovie){
       var newMovie = '';
-      $("#titleInput").val(data.Title);
-      $("#directorInput").val(data.DirectorName);
-      $("#genreInput").val(data.Genre);
+      selectedMovie.Title = $("#titleInput").val();
+      selectedMovie.DirectorName = $("#directorInput").val();
+      selectedMovie.Genre = $("#genreInput").val();
+
+      GetAllMovies();
     }
   })
 }
-
-
-
-function EditMovie(){
-  console.log("edit");
-
-}
-
-
-
-
-$(document).ready(function(){
-  $("td").click(function(){
-    console.log("click");
-    alert($("tr").val());
-  });
-});
-
-
 
 
 
