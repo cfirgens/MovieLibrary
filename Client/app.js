@@ -1,4 +1,4 @@
-GetAllMovies();
+
 //Get and display into table
 function GetAllMovies(){
   $(document).ready(function () {
@@ -13,16 +13,8 @@ function GetAllMovies(){
             movie_data += '<tr>';
             movie_data += '<td>' + value.Title + '</td>';
             movie_data += '<td>' + value.DirectorName + '</td>';
-            movie_data += '<td>' + value.Genre  + '</td>';
-            movie_data += '<td>'
-            + "<button type='button' "
-            + "id='runEdit'"
-            + "onclick='EditMovie(this)' "
-            + "class='btn btn-default'>"
-            + "<span class='glyphicon glyphicon-edit' />"
-            + "Edit"
-            + "</button>"
-            + '</td>';
+            movie_data += '<td>' + value.Genre  + '</td>'
+            movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
             movie_data += '</tr>';
           });
           $('#movieTable').append(movie_data);
@@ -31,6 +23,22 @@ function GetAllMovies(){
   });
 }
 
+function GetSpecificMovie(movieId){
+  console.log("hello");
+  $.ajax({
+    type:'GET',
+    url: 'https://localhost:44370/api/movie/'+movieId,
+    dataType:'json',
+    success: function(data){
+      $("#titleInput").val(data.Title);
+      $("#directorInput").val(data.DirectorName);
+      $("#genreInput").val(data.Genre);
+    }
+  })
+}
+
+
+//Get movie info
 function GetMovieObject(){
   var data = {
     "Title": document.getElementById('titleInput').value,
@@ -40,6 +48,7 @@ function GetMovieObject(){
   return data;
 }
 
+//Create Movie Input
 function CreateMovie(){
   var data = GetMovieObject();
   $.ajax({
@@ -54,7 +63,9 @@ function CreateMovie(){
           movie_data += '<td>' + value.Title + '</td>';
           movie_data += '<td>' + value.DirectorName + '</td>';
           movie_data += '<td>' + value.Genre  + '</td>';
+          movie_data += '<td><button class="edit" onclick = "GetSpecificMovie('+value.MovieId+')"data-key="'+ (key + 1) +'">Edit</button></td>';
           movie_data += '</tr>';
+
         });
       $('#movieTable').append(movie_data);
       GetAllMovies();
@@ -62,22 +73,20 @@ function CreateMovie(){
   })
 }
 
-//Edit
-let dropdown = $('#edit');
-
-dropdown.empty();
-
-dropdown.append('<option selected="true" disabled>Choose Movie To Edit</option>');
-dropdown.prop('selectedIndex', 0);
-
-const url = 'https://localhost:44370/api/movie';
-
-// Populate dropdown with list of movies
-$.getJSON(url, function (data) {
-  $.each(data, function (key, entry) {
-    dropdown.append($('<option></option>').text(entry.Title));
+// Edit
+function EditMovie(){
+  var data = GetMovieObject();
+  $.ajax({
+    type: 'PUT',
+    url: 'https://localhost:44370/api/movie',
+    dataType: 'json',
+    data: data,
+    success: function(data){
+      var movie_data
+    }
   })
-});
+}
+
 
 
 function EditMovie(){
