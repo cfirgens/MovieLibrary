@@ -33,6 +33,7 @@ function GetSpecificMovie(movieId){
       $("#titleInput").val(data.Title);
       $("#directorInput").val(data.DirectorName);
       $("#genreInput").val(data.Genre);
+      document.documentElement.scrollTop = 0;
     }
   })
 }
@@ -82,7 +83,10 @@ function EditMovie(){
     dataType: 'json',
     data: data,
     success: function(data){
-      var movie_data
+      var newMovie = '';
+      $("#titleInput").val(data.Title);
+      $("#directorInput").val(data.DirectorName);
+      $("#genreInput").val(data.Genre);
     }
   })
 }
