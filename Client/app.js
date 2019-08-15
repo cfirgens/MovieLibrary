@@ -92,12 +92,12 @@ function EditMovie(){
       selectedMovie.Title = $("#titleInput").val();
       selectedMovie.DirectorName = $("#directorInput").val();
       selectedMovie.Genre = $("#genreInput").val();
-
       selectedMovie.MovieId = $("#idInput").val();
+      GetAllMovies();
     }
   })
 
-      GetAllMovies();
+
     }
   })
 }
@@ -112,12 +112,6 @@ function DeleteMovie(movieId){
       console.log("Delete Success");
     }
   })
-
-  .then(function(data){
-    GetAllMovies();
-  })
-}
-
 
 
 GetAllMovies();
